@@ -1,4 +1,5 @@
-(ns korma.query-builder)
+(ns korma.query-builder
+  (:use [korma.core]))
 
 (defmulti scopes (fn[n]
                    (if (keyword? n)

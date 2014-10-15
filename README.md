@@ -1,6 +1,6 @@
 # Korma query builder
 
-A Clojure library designed to build Korma queries dynamically.
+A Clojure library designed to build [Korma](http://sqlkorma.com/) queries dynamicly.
 
 
 ## Usage
@@ -11,11 +11,11 @@ Example:
       (:use [korma.query-builder]))
              
     (select 
-      (build-query {:where {:user_id 5} :with [korma_entity] :limit 5 :offset 1}) )
+      (build-query table {:where {:user_id 5} :with [korma_entity] :limit 5 :offset 1}) )
 
 ### Scopes
 
-Dynamic scopes can be combine with plain queries.
+Dynamic scopes are predefined  queries.
 
     (ns exmple 
       (:use [korma.query-builder]))
@@ -25,17 +25,22 @@ Dynamic scopes can be combine with plain queries.
       {:active true})
 
     (select 
-      (build-query {:scopes [:active] }) ) will produce
+      (build-query table {:scopes [:active] }) )
       
 is same as:
     
     (select 
-      (build-query {:where {:active true} }) )
+      (build-query table {:where {:active true} }) )
+      
+Dynamic scopes can be combine with plain queries:
+
+    (select 
+      (build-query table {:scopes [:active] :where {:user_id 5} :with [korma_entity] }) ) 
       
 ### Lazy
 
     (def lazy-query
-      (build-query {:where {:active true} }))
+      (build-query table {:where {:active true} }))
       
 Invoke later:
       

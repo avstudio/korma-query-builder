@@ -13,7 +13,7 @@
 ;; idea from http://stackoverflow.com/questions/12045825/clojure-dynamically-compose-query-with-korma
 (defn- comp-query [q [func arg]]
   (let [sql-fn (ns-resolve 'korma.core (-> func name symbol))]
-    (sql-fn q arg)))
+    (apply sql-fn q arg)))
 
 
 (defn- parse-scopes 

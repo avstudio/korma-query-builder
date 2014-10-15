@@ -38,7 +38,7 @@
 
 (defn build-query
   [t  params]
-  (-> (reduce comp-query (select* t) (select-keys params [:limit :offset]))
+  (-> (reduce comp-query (select* t) (select-keys params [:limit :offset :fields]))
       (build-with-clause   params)
       (parse-scopes        params)
       (build-where-clause  params)))

@@ -11,7 +11,7 @@ Example:
       (:use [korma.query-builder]))
              
     (select 
-      (build-query table {:where {:user_id 5} :with [korma_entity] :limit 5 :offset 1}) )
+      (build-query table {:where {:user_id 5} :with [korma_entity_1 korma_entity_2] :limit 5 :offset 1 :fields [:id :title]}) )
 
 ### Scopes
 

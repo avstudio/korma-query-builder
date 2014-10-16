@@ -29,6 +29,7 @@
     (reduce #(with %1 %2) table s )
     table))
 
+
 (defn- build-where-clause 
   [table query]
   (if-let[s (:where query)]
@@ -37,8 +38,8 @@
 
 
 (defn build-query
-  [t  params]
-  (-> (reduce comp-query (select* t) (select-keys params [:limit :offset :fields]))
+  [t  params ]
+  (-> (reduce comp-query t (select-keys params [:limit :offset :fields]))
       (build-with-clause   params)
       (parse-scopes        params)
       (build-where-clause  params)))
